@@ -59,28 +59,69 @@
     Mythology:[
       ["🇬🇷 Greek Mythology", "Ancient stories from Greece about powerful gods like Zeus, Hera, and mighty heroes like Hercules."],
       ["🇮🇳 Hindu Mythology", "Epic tales and sacred stories from India featuring powerful deities like Shiva, Vishnu, and heroic adventures."],
-      ["🇳🇴 Norse Mythology", "Legends from the Vikings of icy northern lands starring Thor with his hammer, Odin, and magical realms."]
+      ["🇳🇴 Norse Mythology", "Legends from the Vikings of icy northern lands starring Thor with his hammer, Odin, and magical realms."],
+      ["🇪🇬 Egyptian Mythology", "Fascinating stories from the banks of the Nile about gods with animal heads like Ra, Anubis, and Osiris, plus mysterious pyramids and the afterlife."],
+      ["🇯🇵 Japanese Mythology", "Traditional folklore and Shinto legends from Japan featuring nature spirits, kami, dragons, and legendary celestial deities like Amaterasu."],
+      ["🇨🇳 Chinese Mythology", "Epic ancient tales of powerful jade emperors, celestial immortals, divine dragons, and heroic myths that shaped Chinese culture."],
+      ["🍀 Celtic Mythology", "Enchanting folklore and heroic sagas from ancient Ireland, Wales, and Britain filled with magical fae, brave warriors, and mystical realms."],
+      ["🇲🇽 Aztec Mythology", "Vibrant legends and sacred creation tales from ancient Mesoamerica involving powerful sun deities, feathered serpents like Quetzalcoatl, and grand temples."]
     ],
     History:[
       ["🏺 Ancient History", "Discover how the very first human civilizations began along giant rivers like the Nile and the Indus."],
       ["👑 Kings & Queens", "Learn about royal rulers who wore golden crowns, lived in grand castles, and commanded mighty kingdoms."],
-      ["🚀 Modern History", "Explore how the world changed quickly with steam trains, electricity, airplanes, computers, and space travel!"]
+      ["🚀 Modern History", "Explore how the world changed quickly with steam trains, electricity, airplanes, computers, and space travel!"],
+      ["⚔️️ Wars", "Study historical conflicts, battles, and strategies that reshaped borders and nations across time."],
+      ["🏛️ Civilisations", "Explore the rise and fall of great societies, empires, and cultures that built the foundations of human history."],
+      ["💡 Discoveries", "Uncover major scientific breakthroughs, geographical explorations, and inventions that changed humanity forever."],
+      ["📅 Historical Events", "Relive monumental turning points and dates that altered the course of human society."],
+      ["🏰 Medieval History", "Journey into the Middle Ages featuring knights, castles, feudal lords, and the age of chivalry."],
+      ["🌟 Famous People", "Learn about iconic leaders, inventors, scientists, and artists who left a massive mark on history."]
     ],
     Maths:[
       ["➕ Addition & Subtraction", "Building blocks of numbers! Addition combines groups together, while subtraction takes amounts away."],
       ["✖️ Multiplication", "Fast-track adding! Multiplication tables help you calculate bigger numbers quickly."],
-      ["📐 Geometry", "The study of shapes, angles, and spaces. Learn about triangles, squares, circles, and 3D blocks!"]
+      ["➗ Division", "Splitting quantities into equal groups or parts, the opposite of multiplication."],
+      ["🍕 Fraction", "Representing parts of a whole using numerators and denominators."],
+      ["🔢 Decimal", "Expressing fractions and numbers using a decimal point and place values."],
+      ["📊 Percentage", "Parts per hundred, used everywhere from sales discounts to test scores."],
+      ["📐 Geometry", "The study of shapes, angles, and spaces. Learn about triangles, squares, circles, and 3D blocks!"],
+      ["📈 Algebra", "Using letters and symbols to represent unknown numbers in equations and formulas."],
+      ["📉 Graphs", "Visual tools like bar charts and line graphs to display and interpret data trends."],
+      ["🎲 Probability", "The mathematical study of chance and how likely events are to happen."],
+      ["🔢 Numbers", "Understanding number systems, place values, prime numbers, and integers."],
+      ["📝 Word problems", "Applying math skills to solve real-world scenarios and puzzles."]
     ],
     English:[
       ["📖 Grammar", "The secret rules of how we put sentences together so we can speak and write clearly."],
       ["🔤 Vocabulary", "Building your word power! Discover fun, descriptive words to make your stories super exciting."],
-      ["📜 Punctuation", "The traffic signs of reading! Commas, periods, and exclamation marks tell you when to pause or stop."]
+      ["📜 Punctuation", "The traffic signs of reading! Commas, periods, and exclamation marks tell you when to pause or stop."],
+      ["✍️ Writing", "Crafting creative stories, informative essays, and personal reflections with clarity."],
+      ["👁️ Reading", "Improving fluency, decoding words, and understanding textual meaning."],
+      ["🗣️ Speaking", "Practicing clear pronunciation, public speaking, and effective verbal communication."],
+      ["👂 Listening", "Developing active listening skills to comprehend spoken instructions and stories."],
+      ["🔠 Alphabet", "Mastering letters, sounds, uppercase/lowercase forms, and alphabetical order."],
+      ["🧩 Parts of speech", "Learning nouns, verbs, adjectives, adverbs, pronouns, prepositions, and conjunctions."],
+      ["🧱 Sentence building", "Constructing complete thoughts with proper subjects, predicates, and modifiers."],
+      ["🐝 Spelling", "Memorizing letter patterns and spelling rules to write words correctly."],
+      ["💬 Idioms", "Discovering fun, figurative expressions whose meanings aren't obvious from individual words."],
+      ["🧠 Comprehension", "Reading passages and answering questions to test deep understanding of the text."]
     ],
     Science:[
       ["🧬 Biology", "The incredible study of living things—from tiny microscopic cells to giant blue whales and towering trees!"],
       ["🪐 Space & Planets", "Blast off into the cosmos! Discover burning stars, swirling galaxies, black holes, and our solar system."],
-      ["⚡ Physics & Energy", "How things move and work! Learn about gravity pushing you down, magnets pulling, and electricity."]
+      ["⚡ Physics & Energy", "How things move and work! Learn about gravity pushing you down, magnets pulling, and electricity."],
+      ["💻 Technology", "Exploring computers, digital tools, hardware, software, and how modern devices operate."],
+      ["🧬 Bio technology", "Using biology and living organisms to develop helpful medical and environmental innovations."]
     ]
+    };
+
+    const dictionaryData = {
+      "algorithm": "A step-by-step set of instructions or rules designed to solve a problem or complete a task.",
+      "photosynthesis": "The process by which plants use sunlight, water, and carbon dioxide to create oxygen and energy in food.",
+      "gravity": "The invisible natural force that pulls objects toward each other, keeping our feet on the ground and planets in orbit.",
+      "democracy": "A system of government where power is vested in the people, who rule either directly or through freely elected representatives.",
+      "ecosystem": "A community of living organisms interacting with each other and their physical environment.",
+      "fraction": "A numerical quantity that is not a whole number, representing a part of a whole."
     };
 
     const countryDetails={
@@ -283,12 +324,12 @@
 
     const sportDetails={
     "⚽ Soccer":[["📖 How the game works","Two teams try to score more goals by kicking the ball into the opponent’s goal."],["👥 Positions","Learn about goalkeepers, defenders, midfielders, and forwards."],["🥅 Scoring goals","A goal counts when the whole ball crosses the goal line."]],
-    "🏏 Cricket":[["📖 How the game works","Teams take turns batting and fielding to score runs."],["🏏 Batting","Batters score runs and protect their wickets."]],
-    "🏀 Basketball":[["📖 How the game works","Teams try to score points by throwing the ball through the hoop."],["🔢 Scoring","Learn about free throws, two-pointers, and three-pointers."]],
+    "🏏 Cricket":[["📖 How the game works","Teams take turns batting and fielding to score runs."],["🏏 Batting","Batters score runs and protect their wickets."],["🛡️ Fielding in cricket","Fielders stop the ball from hitting boundaries and try to catch batters out or run them out."]],
+    "🏀 Basketball":[["📖 How the game works","Teams try to score points by throwing the ball through the hoop."],["🔢 Scoring","Learn about free throws, two-pointers, and three-pointers."],["🏀 Dribbling","Bouncing the ball continuously with one hand while moving across the court."],["🎯 Shooting","Aiming and releasing the ball toward the hoop to score points."]],
     "🎾 Tennis":[["📖 How the game works","Players hit a ball over a net using a racket."],["🎾 Serving","A serve starts every single point."]],
-    "🏉 Rugby":[["📖 How the game works","Teams carry, pass, and kick an oval ball to score points."],["🎯 Scoring","Learn about tries and conversions."]],
+    "🏉 Rugby":[["📖 How the game works","Teams carry, pass, and kick an oval ball to score points."],["🎯 Scoring","Learn about tries and conversions."],["⚠️️ Fouls in rugby","Illegal tackles, high hits, or forward passes result in penalties or yellow/red cards."]],
     "🏊 Swimming":[["📖 How races work","Swimmers race from one end of the pool to the other."],["🏊 Swimming strokes","Learn freestyle, backstroke, breaststroke, and butterfly."]],
-    "🏎️ F1":[["📖 How F1 works","Drivers race custom single-seat cars on circuits worldwide."],["🔧 Pit stops","Teams quickly change tyres during a race."]],
+    "🏎️ F1":[["📖 How F1 works","Drivers race custom single-seat cars on circuits worldwide."],["🔧 Pit stops","Teams quickly change tyres during a race."],["🏎️ Driving","Drivers master high-speed cornering, braking zones, and split-second tactical overtaking."]],
     "🥊 Boxing":[["📖 How boxing works","Two boxers compete inside a ring using legal punches."],["🥊 Punches","Learn the jab, cross, hook, and uppercut."]]
     };
 
@@ -331,7 +372,7 @@
     <div class="grid">
     ${[["🏟️","Sports"],["🌎","Countries"],["🏛","Mythology"],["📚","Science"]].map(x=>`<button class="btn" onclick="openPage('${x[1]}')">${x[0]}${x[1]}</button>`).join("")}
     </div>
-    ${[["🗺️","History"],["➗","Maths"],["🔤","English"],["🎯","Quiz Menu"],["⚙️","Settings"]].map(x=>`<button class="btn full" onclick="openPage('${x[1]}')">${x[0]}${x[1]}</button>`).join("")}
+    ${[["🗺️","History"],["➗","Maths"],["🔤","English"],["📖","Dictionary"],["🎯","Quiz Menu"],["⚙️","Settings"]].map(x=>`<button class="btn full" onclick="openPage('${x[1]}')">${x[0]}${x[1]}</button>`).join("")}
     </div>`;
     document.getElementById("globalSearch").addEventListener("keydown",e=>{
       if(e.key==="Enter"&&e.target.value.trim()){
@@ -348,15 +389,40 @@
 
     function openPage(name){
     if(name==="Quiz Menu")return quizMenu();
-    if(name==="Settings"){screen.innerHTML=`<div class="card"><button class="back" onclick="home()">← Home</button><h2>⚙️ Settings</h2><p>Knowledge Helper app is ready for kids to learn and play!</p></div>`;return}
+    if(name==="Dictionary")return openDictionary();
+    if(name==="Settings"){screen.innerHTML=`<div class="card"><button class="back" onclick="home()">← Home</button><h2>⚙️ Settings</h2><p>Knowledge Helper web app is ready and fully updated!</p></div>`;return}
     const arr=topics[name];
     screen.innerHTML=`<div><button class="back" onclick="home()">← Home</button><h2>${name}</h2><div class="grid">${arr.map((x,i)=>`<button class="btn" onclick="topic('${name}',${i})">${Array.isArray(x)?x[0]:x}</button>`).join("")}</div></div>`;
+    }
+
+    function openDictionary(){
+    screen.innerHTML=`<div class="card">
+    <button class="back" onclick="home()">← Home</button>
+    <h2>📖 Dictionary App</h2>
+    <p>Type a word to find its meaning:</p>
+    <input id="dictInput" placeholder="e.g. algorithm, photosynthesis...">
+    <div style="height:14px"></div>
+    <button class="btn primary" onclick="lookupWord()">Search Word</button>
+    <div id="dictResult" style="margin-top:18px"></div>
+    </div>`;
+    document.getElementById("dictInput").addEventListener("keydown",e=>{if(e.key==="Enter")lookupWord();});
+    }
+
+    function lookupWord(){
+    const word=document.getElementById("dictInput").value.trim().toLowerCase();
+    const res=document.getElementById("dictResult");
+    if(!word){res.innerHTML=`<p style="color:#ef4444">Please enter a word!</p>`;return;}
+    if(dictionaryData[word]){
+      res.innerHTML=`<div style="background:#f8fafc;padding:14px;border-radius:12px;border:1px solid #e2e8f0"><strong>📘 ${word.charAt(0).toUpperCase()+word.slice(1)}:</strong><p style="margin-top:6px">${dictionaryData[word]}</p></div>`;
+    } else {
+      res.innerHTML=`<div style="background:#f8fafc;padding:14px;border-radius:12px;border:1px solid #e2e8f0"><p>Word not found in quick dictionary, but try terms like <em>algorithm</em>, <em>gravity</em>, or <em>fraction</em>!</p></div>`;
+    }
     }
 
     function topic(name,i){
     const item=topics[name][i];
     if(name==="Sports" && sportDetails[item]){
-      screen.innerHTML=`<div><button class="back" onclick="openPage('Sports')">← Sports</button><h2>${item}</h2><div class="sport-list">${sportDetails[item].map((x,j)=>`<button class="btn sport-topic" onclick="sportLesson(${JSON.stringify(item)},${j})">${x[0]}</button>`).join("")}</div></div>`;
+      screen.innerHTML=`<div><button class="back" onclick="openPage('Sports')">← Sports</button><h2>${item}</h2><div class="sport-list">${sportDetails[item].map((x,j)=>`<button class="btn sport-topic" onclick="sportLesson('${item}',${j})">${x[0]}</button>`).join("")}</div></div>`;
       return;
     }
     if(name==="Countries"){
@@ -371,12 +437,12 @@
 
     function showCountry(countryName){
     const info=countryDetails[countryName]||{capital:"Unknown",region:"Global",language:"English",fact:"An exciting country to learn about!"};
-    screen.innerHTML=`<div class="card"><button class="back" onclick="openPage('Countries')">← Countries</button><h2>${countryName}</h2><p><strong>🏛️ Capital:</strong> ${info.capital}</p><p><strong>🌍 Region:</strong> ${info.region}</p><p><strong>🗣️ Language:</strong> ${info.language}</p><p><strong>✨ Fun Fact:</strong> ${info.fact}</p></div>`;
+    screen.innerHTML=`<div class="card"><button class="back" onclick="openPage('Countries')">← Countries</button><h2>${countryName}</h2><p><strong>🏛 Capital:</strong> ${info.capital}</p><p><strong>🌍 Region:</strong> ${info.region}</p><p><strong>🗣️ Language:</strong> ${info.language}</p><p><strong>✨ Fun Fact:</strong> ${info.fact}</p></div>`;
     }
 
     function sportLesson(sport,i){
     const x=sportDetails[sport][i];
-    screen.innerHTML=`<div class="card"><button class="back" onclick="topic('Sports',${topics.Sports.indexOf(sport)})">← ${sport}</button><h2>${x[0]}</h2><p style="font-size:18px;line-height:1.65">${x[1]}</p></div>`;
+    screen.innerHTML=`<div class="card"><button class="back" onclick="topic('Sports', ${topics.Sports.indexOf(sport)})">← ${sport}</button><h2>${x[0]}</h2><p style="font-size:18px;line-height:1.65">${x[1]}</p></div>`;
     }
 
     function quizMenu(){
