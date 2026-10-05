@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Helper</title>
+    <style>
+        *{box-sizing:border-box}
+        body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#eef4ff;color:#183b72}
+        .app{max-width:760px;margin:0 auto;padding:24px 16px 40px}
+        .card{background:white;border:1px solid #cbd5e1;border-radius:20px;padding:22px;box-shadow:0 4px 18px rgba(15,23,42,.08)}
+        .brain{text-align:center;font-size:64px}
+        h1{text-align:center;margin:4px 0;color:#1d4ed8;font-weight:850}
+        .subtitle{text-align:center;color:#3b82f6;font-weight:600;margin-top:0}
+        input{width:100%;min-height:50px;font-size:16px;border:1px solid #cbd5e1;border-radius:13px;padding:12px}
+        .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+        .btn{width:100%;min-height:52px;border:1px solid #93c5fd;background:white;border-radius:15px;padding:14px;text-align:left;font-weight:800;font-size:16px;color:#2563eb;cursor:pointer}
+        .btn:hover{background:#eff6ff}
+        .btn:active{transform:scale(.98)}
+        .primary{background:#2563eb;color:white;border-color:#2563eb;text-align:center}
+        .back{border:0;background:none;color:#7c3aed;font-weight:700;font-size:16px;padding:6px 0 14px;cursor:pointer}
+        .full{margin-top:14px}
+        .item{margin-bottom:10px}.sport-list{display:flex;flex-direction:column;gap:18px}.sport-topic{min-height:58px}
+        .center{text-align:center}
+        @media(max-width:520px){.grid{grid-template-columns:1fr}}
+    </style>
+</head>
+<body>
+<main class="app"><div id="screen"></div></main>
+<script>
+    const topics={
+    Sports:["⚽ Soccer","🏏 Cricket","🏀 Basketball","🎾 Tennis","🏉 Rugby","🏊 Swimming","🏎️ F1","🥊 Boxing"],
+    Countries:[
+      "🇦🇫 Afghanistan", "🇦🇱 Albania", "🇩🇿 Algeria", "🇦🇩 Andorra", "🇦🇴 Angola", "🇦🇬 Antigua and Barbuda", "🇦🇷 Argentina", "🇦🇲 Armenia", "🇦🇺 Australia", "🇦🇹 Austria", "🇦🇿 Azerbaijan",
+      "🇧🇸 Bahamas", "🇧🇭 Bahrain", "🇧🇩 Bangladesh", "🇧🇧 Barbados", "🇧🇾 Belarus", "🇧🇪 Belgium", "🇧🇿 Belize", "🇧🇯 Benin", "🇧🇹 Bhutan", "🇧🇴 Bolivia", "🇧🇦 Bosnia and Herzegovina", "🇧🇼 Botswana", "🇧🇷 Brazil", "bn Brunei", "🇧🇬 Bulgaria", "🇧🇫 Burkina Faso", "🇧🇮 Burundi",
+      "🇨🇻 Cabo Verde", "🇰🇭 Cambodia", "🇨🇲 Cameroon", "🇨🇦 Canada", "🇨🇫 Central African Republic", "🇹🇩 Chad", "🇨🇱 Chile", "🇨🇳 China", "🇨🇴 Colombia", "🇰🇲 Comoros", "🇨🇬 Congo", "🇨🇩 Congo (Democratic Republic)", "🇨🇷 Costa Rica", "🇭🇷 Croatia", "🇨🇺 Cuba", "🇨🇾 Cyprus", "🇨🇿 Czechia",
+      "🇩🇰 Denmark", "🇩🇯 Djibouti", "🇩🇲 Dominica", "🇩🇴 Dominican Republic",
+      "🇪🇨 Ecuador", "🇪🇬 Egypt", "🇸🇻 El Salvador", "🇬🇶 Equatorial Guinea", "🇪🇷 Eritrea", "🇪🇪 Estonia", "🇸🇿 Eswatini", "🇪🇹 Ethiopia",
+      "🇫🇯 Fiji", "🇫🇮 Finland", "🇫🇷 France",
+      "🇬🇦 Gabon", "🇬🇲 Gambia", "🇬🇪 Georgia", "🇩🇪 Germany", "🇬🇭 Ghana", "🇬🇷 Greece", "🇬🇩 Grenada", "🇬🇹 Guatemala", "🇬🇳 Guinea", "🇬🇼 Guinea-Bissau", "🇬🇾 Guyana",
+      "🇭🇹 Haiti", "🇭🇳 Honduras", "🇭🇺 Hungary",
+      "🇮🇸 Iceland", "🇮🇳 India", "🇮🇩 Indonesia", "🇮🇷 Iran", "🇮🇶 Iraq", "🇮🇪 Ireland", "🇮🇱 Israel", "🇮🇹 Italy", "🇯🇲 Jamaica",
+      "🇯🇵 Japan", "🇯🇴 Jordan",
+      "🇰🇿 Kazakhstan", "🇰🇪 Kenya", "🇰🇮 Kiribati", "🇰🇼 Kuwait", "🇰🇬 Kyrgyzstan",
+      "🇱🇦 Laos", "🇱🇻 Latvia", "🇱🇧 Lebanon", "🇱🇸 Lesotho", "🇱🇷 Liberia", "🇱🇾 Libya", "🇱🇮 Liechtenstein", "🇱🇹 Lithuania", "🇱🇽 Luxembourg",
+      "🇲🇬 Madagascar", "🇲🇼 Malawi", "🇲🇾 Malaysia", "🇲🇻 Maldives", "🇲🇱 Mali", "🇲🇹 Malta", "🇲🇭 Marshall Islands", "🇲🇷 Mauritania", "🇲🇺 Mauritius", "🇲🇽 Mexico", "🇫🇲 Micronesia", "🇲🇩 Moldova", "🇲🇨 Monaco", "🇲🇳 Mongolia", "🇲🇪 Montenegro", "🇲🇦 Morocco", "🇲🇿 Mozambique", "🇲🇲 Myanmar",
+      "🇳🇦 Namibia", "🇳🇷 Nauru", "🇳🇵 Nepal", "🇳🇱 Netherlands", "🇳🇿 New Zealand", "🇳🇮 Nicaragua", "🇳🇪 Niger", "🇳🇬 Nigeria", "🇰🇵 North Korea", "🇲🇰 North Macedonia", "🇳🇴 Norway",
+      "🇴🇲 Oman",
+      "🇵🇰 Pakistan", "🇵🇼 Palau", "🇵🇸 Palestine", "🇵🇦 Panama", "🇵🇬 Papua New Guinea", "🇵🇾 Paraguay", "🇵🇪 Peru", "🇵🇭 Philippines", "🇵🇱 Poland", "🇵🇹 Portugal",
+      "🇶🇦 Qatar",
+      "🇷🇴 Romania", "🇷🇺 Russia", "🇷🇼 Rwanda",
+      "🇰🇳 Saint Kitts and Nevis", "🇱🇨 Saint Lucia", "🇻🇨 Saint Vincent and the Grenadines", "🇼🇸 Samoa", "🇸🇲 San Marino", "🇸🇹 Sao Tome and Principe", "🇸🇦 Saudi Arabia", "🇸🇳 Senegal", "🇷🇸 Serbia", "🇸🇨 Seychelles", "🇸🇱 Sierra Leone", "🇸🇬 Singapore", "🇸🇰 Slovakia", "🇸🇮 Slovenia", "🇸🇧 Solomon Islands", "索 Somali", "🇿🇦 South Africa", "🇰🇷 South Korea", "🇸🇸 South Sudan", "🇪🇸 Spain", "🇱🇰 Sri Lanka", "🇸🇩 Sudan", "🇸🇷 Suriname", "🇸🇪 Sweden", "🇨🇭 Switzerland", "🇸🇾 Syria",
+      "🇹🇼 Taiwan", "🇹🇯 Tajikistan", "🇹🇿 Tanzania", "🇹🇭 Thailand", "🇹🇱 Timor-Leste", "🇹🇬 Togo", "🇹🇴 Tonga", "🇹🇹 Trinidad and Tobago", "🇹🇳 Tunisia", "🇹🇷 Turkey", "🇹🇲 Turkmenistan", "🇹🇻 Tuvalu",
+      "🇺🇬 Uganda", "🇺🇦 Ukraine", "🇦🇪 United Arab Emirates", "🇬🇧 United Kingdom", "🇺🇸 United States", "🇺🇾 Uruguay", "🇺🇿 Uzbekistan",
+      "🇻🇺 Vanuatu", "🇻🇦 Vatican City", "🇻🇪 Venezuela", "🇻🇳 Vietnam",
+      "🇾🇪 Yemen",
+      "🇿🇲 Zambia", "🇿🇼 Zimbabwe"
+    ],
+    Mythology:[
+      ["🇬🇷 Greek Mythology", "Ancient stories from Greece about powerful gods like Zeus, Hera, and mighty heroes like Hercules."],
+      ["🇮🇳 Hindu Mythology", "Epic tales and sacred stories from India featuring powerful deities like Shiva, Vishnu, and heroic adventures."],
+      ["🇳🇴 Norse Mythology", "Legends from the Vikings of icy northern lands starring Thor with his hammer, Odin, and magical realms."]
+    ],
+    History:[
+      ["🏺 Ancient History", "Discover how the very first human civilizations began along giant rivers like the Nile and the Indus."],
+      ["👑 Kings & Queens", "Learn about royal rulers who wore golden crowns, lived in grand castles, and commanded mighty kingdoms."],
+      ["🚀 Modern History", "Explore how the world changed quickly with steam trains, electricity, airplanes, computers, and space travel!"]
+    ],
+    Maths:[
+      ["➕ Addition & Subtraction", "Building blocks of numbers! Addition combines groups together, while subtraction takes amounts away."],
+      ["✖️ Multiplication", "Fast-track adding! Multiplication tables help you calculate bigger numbers quickly."],
+      ["📐 Geometry", "The study of shapes, angles, and spaces. Learn about triangles, squares, circles, and 3D blocks!"]
+    ],
+    English:[
+      ["📖 Grammar", "The secret rules of how we put sentences together so we can speak and write clearly."],
+      ["🔤 Vocabulary", "Building your word power! Discover fun, descriptive words to make your stories super exciting."],
+      ["📜 Punctuation", "The traffic signs of reading! Commas, periods, and exclamation marks tell you when to pause or stop."]
+    ],
+    Science:[
+      ["🧬 Biology", "The incredible study of living things—from tiny microscopic cells to giant blue whales and towering trees!"],
+      ["🪐 Space & Planets", "Blast off into the cosmos! Discover burning stars, swirling galaxies, black holes, and our solar system."],
+      ["⚡ Physics & Energy", "How things move and work! Learn about gravity pushing you down, magnets pulling, and electricity."]
+    ]
+    };
+
+    const countryDetails={
+      "🇦🇺 Australia": { capital: "Canberra", region: "Oceania", language: "English", fact: "Australia is both a country and a giant island continent!" },
+      "🇮🇳 India": { capital: "New Delhi", region: "Asia", language: "Hindi & English", fact: "India invented the number zero and has the world's largest population." },
+      "🇯🇵 Japan": { capital: "Tokyo", region: "Asia", language: "Japanese", fact: "Japan is made up of over 6,000 beautiful islands!" },
+      "🇨🇦 Canada": { capital: "Ottawa", region: "North America", language: "English & French", fact: "Canada has more lakes than the rest of the world combined." },
+      "🇬🇧 United Kingdom": { capital: "London", region: "Europe", language: "English", fact: "You are never more than 70 miles away from the ocean anywhere in the UK." },
+      "🇺🇸 United States": { capital: "Washington, D.C.", region: "North America", language: "English", fact: "The U.S. flag has 50 stars representing its 50 states." },
+      "🇧🇷 Brazil": { capital: "Brasília", region: "South America", language: "Portuguese", fact: "Brazil is home to the Amazon Rainforest, the biggest jungle on Earth." },
+      "🇫🇷 France": { capital: "Paris", region: "Europe", language: "French", fact: "The Eiffel Tower can actually grow taller during hot summer days!" },
+      "🇩🇪 Germany": { capital: "Berlin", region: "Europe", language: "German", fact: "Germany has over 20,000 real fairy-tale castles." },
+      "🇮🇹 Italy": { capital: "Rome", region: "Europe", language: "Italian", fact: "Italy wraps entirely around two independent micro-countries: Vatican City and San Marino." },
+      "🇲🇬 Madagascar": { capital: "Antananarivo", region: "Africa", language: "Malagasy & French", fact: "Most of the animals found here, like cute lemurs, live nowhere else on Earth!" },
+      "🇮🇸 Iceland": { capital: "Reykjavik", region: "Europe", language: "Icelandic", fact: "Iceland is called the Land of Fire and Ice due to volcanoes sitting next to glaciers." },
+      "🇫🇯 Fiji": { capital: "Suva", region: "Oceania", language: "English & Fijian", fact: "Fiji is a tropical paradise made up of over 300 islands." },
+      "🇨🇺 Cuba": { capital: "Havana", region: "Caribbean", language: "Spanish", fact: "Classic colorful vintage cars from the 1950s are driven all across Cuba." },
+      "🇮🇩 Indonesia": { capital: "Jakarta", region: "Asia", language: "Indonesian", fact: "Indonesia is a giant island nation made up of over 17,000 islands!" },
+      "🇵🇭 Philippines": { capital: "Manila", region: "Asia", language: "Filipino & English", fact: "The Philippines is an archipelago consisting of more than 7,600 islands." },
+      "🇳🇿 New Zealand": { capital: "Wellington", region: "Oceania", language: "English & Māori", fact: "There are many more friendly sheep living here than human people." }
+      // You can browse or add any of the other 180+ global countries right here!
+    };
+
+    const sportDetails={
+    "⚽ Soccer":[["📖 How the game works","Two teams try to score more goals by kicking the ball into the opponent’s goal."],["👥 Positions","Learn about goalkeepers, defenders, midfielders, and forwards."],["🥅 Scoring goals","A goal counts when the whole ball crosses the goal line."]],
+    "🏏 Cricket":[["📖 How the game works","Teams take turns batting and fielding to score runs."],["🏏 Batting","Batters score runs and protect their wickets."]],
+    "🏀 Basketball":[["📖 How the game works","Teams try to score points by throwing the ball through the hoop."],["🔢 Scoring","Learn about free throws, two-pointers, and three-pointers."]],
+    "🎾 Tennis":[["📖 How the game works","Players hit a ball over a net using a racket."],["🎾 Serving","A serve starts every single point."]],
+    "🏉 Rugby":[["📖 How the game works","Teams carry, pass, and kick an oval ball to score points."],["🎯 Scoring","Learn about tries and conversions."]],
+    "🏊 Swimming":[["📖 How races work","Swimmers race from one end of the pool to the other."],["🏊 Swimming strokes","Learn freestyle, backstroke, breaststroke, and butterfly."]],
+    "🏎️ F1":[["📖 How F1 works","Drivers race custom single-seat cars on circuits worldwide."],["🔧 Pit stops","Teams quickly change tyres during a race."]],
+    "🥊 Boxing":[["📖 How boxing works","Two boxers compete inside a ring using legal punches."],["🥊 Punches","Learn the jab, cross, hook, and uppercut."]]
+    };
+
+    const quizzes = {
+      "Maths": [
+        ["What is 9 × 8?", ["64", "72", "81", "63"], 1],
+        ["What is 144 ÷ 12?", ["10", "11", "12", "14"], 2],
+        ["What is 25% of 100?", ["20", "25", "50", "75"], 1],
+        ["How many degrees are in a triangle?", ["90°", "180°", "360°", "270°"], 1]
+      ],
+      "English": [
+        ["Which word is a noun?", ["Run", "Quickly", "Apple", "Happily"], 2],
+        ["Choose the correct spelling:", ["Because", "Becuse", "Becaos", "Bicause"], 0],
+        ["What is the opposite of 'Ancient'?", ["Old", "Modern", "Large", "Bright"], 1]
+      ],
+      "History": [
+        ["Which ancient civilization built the great pyramids?", ["Romans", "Greeks", "Egyptians", "Aztecs"], 2],
+        ["Who was the famous queen of ancient Egypt?", ["Cleopatra", "Elizabeth", "Victoria", "Nefertiti"], 0],
+        ["In which country were the first Olympic games held?", ["Italy", "Greece", "France", "Egypt"], 1]
+      ],
+      "Science": [
+        ["Which planet is closest to the Sun?", ["Venus", "Mars", "Mercury", "Earth"], 2],
+        ["What gas do plants absorb from the air?", ["Oxygen", "Carbon Dioxide", "Nitrogen", "Hydrogen"], 1],
+        ["What water state is ice?", ["Gas", "Liquid", "Solid", "Plasma"], 2]
+      ],
+      "Sports": [
+        ["How many players are on a soccer team on the field?", ["9", "10", "11", "12"], 2],
+        ["In which sport do players hit a ball over a net using a racket?", ["Basketball", "Tennis", "Cricket", "Rugby"], 1],
+        ["What shape is the ball used in rugby?", ["Round", "Oval", "Square", "Flat"], 1]
+      ]
+    };
+
+    const screen=document.getElementById("screen");
+
+    function home(){
+    screen.innerHTML=`<div class="card">
+    <div class="brain">🧠</div><h1>Knowledge Helper</h1><p class="subtitle">Everything for your brain</p>
+    <input id="globalSearch" placeholder="🔍 Search any country or topic...">
+    <div style="height:18px"></div>
+    <div class="grid">
+    ${[["🏟️","Sports"],["🌎","Countries"],["🏛","Mythology"],["📚","Science"]].map(x=>`<button class="btn" onclick="openPage('${x[1]}')">${x[0]}${x[1]}</button>`).join("")}
+    </div>
+    ${[["🗺️","History"],["➗","Maths"],["🔤","English"],["🎯","Quiz Menu"],["⚙️","Settings"]].map(x=>`<button class="btn full" onclick="openPage('${x[1]}')">${x[0]}${x[1]}</button>`).join("")}
+    </div>`;
+    document.getElementById("globalSearch").addEventListener("keydown",e=>{
+      if(e.key==="Enter"&&e.target.value.trim()){
+        const val=e.target.value.trim();
+        const found=Object.keys(countryDetails).find(c=>c.toLowerCase().includes(val.toLowerCase()));
+        if(found) {
+          showCountry(found);
+        } else {
+          screen.innerHTML=`<div class="card"><button class="back" onclick="home()">← Home</button><h2>🔍 Search: ${val}</h2><p>That's an awesome topic! Check out our Countries or Science tabs to explore more.</p></div>`;
+        }
+      }
+    });
+    }
+
+    function openPage(name){
+    if(name==="Quiz Menu")return quizMenu();
+    if(name==="Settings"){screen.innerHTML=`<div class="card"><button class="back" onclick="home()">← Home</button><h2>⚙️ Settings</h2><p>Knowledge Helper app is ready for kids to learn and play!</p></div>`;return}
+    const arr=topics[name];
+    screen.innerHTML=`<div><button class="back" onclick="home()">← Home</button><h2>${name}</h2><div class="grid">${arr.map((x,i)=>`<button class="btn" onclick="topic('${name}',${i})">${Array.isArray(x)?x[0]:x}</button>`).join("")}</div></div>`;
+    }
+
+    function topic(name,i){
+    const item=topics[name][i];
+    if(name==="Sports" && sportDetails[item]){
+      screen.innerHTML=`<div><button class="back" onclick="openPage('Sports')">← Sports</button><h2>${item}</h2><div class="sport-list">${sportDetails[item].map((x,j)=>`<button class="btn sport-topic" onclick="sportLesson(${JSON.stringify(item)},${j})">${x[0]}</button>`).join("")}</div></div>`;
+      return;
+    }
+    if(name==="Countries"){
+      showCountry(item);
+      return;
+    }
+    if(Array.isArray(item)){
+      screen.innerHTML=`<div class="card"><button class="back" onclick="openPage('${name}')">← ${name}</button><h2>${item[0]}</h2><p style="font-size:18px;line-height:1.6">${item[1]}</p></div>`;
+      return;
+    }
+    }
+
+    function showCountry(countryName){
+    const info=countryDetails[countryName]||{capital:"Capital city",region:"Global Region",language:"Official Language",fact:"A fantastic country to learn about and explore with friends!"};
+    screen.innerHTML=`<div class="card"><button class="back" onclick="openPage('Countries')">← Countries</button><h2>${countryName}</h2><p><strong>🏛️ Capital:</strong> ${info.capital}</p><p><strong>🌍 Region:</strong> ${info.region}</p><p><strong>🗣️ Language:</strong> ${info.language}</p><p><strong>✨ Fun Fact:</strong> ${info.fact}</p></div>`;
+    }
+
+    function sportLesson(sport,i){
+    const x=sportDetails[sport][i];
+    screen.innerHTML=`<div class="card"><button class="back" onclick="topic('Sports',${topics.Sports.indexOf(sport)})">← ${sport}</button><h2>${x[0]}</h2><p style="font-size:18px;line-height:1.65">${x[1]}</p></div>`;
+    }
+
+    function quizMenu(){
+    screen.innerHTML=`<div><button class="back" onclick="home()">← Home</button><h2>🎯 Subject Quizzes</h2><div class="grid">
+    ${Object.keys(quizzes).map(q=>`<button class="btn full" onclick="startQuiz('${q}')">🎯 ${q} Quiz</button>`).join("")}
+    </div></div>`;
+    }
+
+    function startQuiz(quizName){
+    const qs=quizzes[quizName];
+    let i=0,score=0;
+    function show(){
+    const q=qs[i];
+    screen.innerHTML=`<div class="card"><button class="back" onclick="quizMenu()">← Quizzes</button><h2>🎯 ${quizName} Quiz</h2><p>Question ${i+1} of ${qs.length}</p><h3>${q[0]}</h3>${q[1].map((a,n)=>`<button class="btn item answer">${String.fromCharCode(65+n)})${a}</button>`).join("")}</div>`;
+    document.querySelectorAll(".answer").forEach((b,n)=>b.addEventListener("click",()=>{
+    if(n===q[2])score++;
+    document.querySelectorAll(".answer").forEach(x=>x.disabled=true);
+    setTimeout(()=>{i++;i<qs.length?show():screen.innerHTML=`<div class="card center"><h2>🏆 Quiz Complete!</h2><p style="font-size:24px">You scored <strong>${score}/${qs.length}</strong></p><button class="btn primary" onclick="startQuiz('${quizName}')">Play Again</button><button class="back" onclick="quizMenu()">← Back to Quizzes</button></div>`},450);
+    }));
+    }
+    show();
+    }
+
+    home();
+</script>
+</body>
+</html>
